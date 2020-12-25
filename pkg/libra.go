@@ -117,8 +117,8 @@ func (app *Application) printBanner() error {
 
 //配置文件初始化
 func (app *Application) loadConfig() error {
-	conf.InitConfig(app.confPath)
-	return nil
+	err := conf.InitConfig(app.confPath)
+	return err
 }
 
 //日志初始化
