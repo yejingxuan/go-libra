@@ -1,0 +1,15 @@
+[general]
+app_name = "libra"
+log_level = 1
+log_path = "./log/"
+
+[server]
+http_port = 9001
+
+[database]
+dsn = "postgres://postgres:postgres@127.0.0.1:5432/postgres?sslmode=disable"
+max_open_connections = 1000
+max_idle_connections = 2
+log_mode = true
+
+[system]
