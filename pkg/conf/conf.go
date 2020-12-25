@@ -15,7 +15,6 @@ func InitConfig(path string) error {
 	err := viper.ReadInConfig() // Find and read the conf file
 	if err != nil {             // Handle errors reading the conf file
 		println("error", err.Error())
-		return err
 	}
 	//加载分布式配置中心 todo
 
