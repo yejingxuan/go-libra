@@ -1,0 +1,84 @@
+{"level":"info","time":"2020-12-26T09:48:28.851+0800","caller":"log/log.go:54","msg":"http-服务加载成功, 访问地址：9001","app":"libra","data":[]}
+{"level":"info","time":"2020-12-26T09:52:46.788+0800","caller":"log/log.go:54","msg":"http-服务加载成功, 访问地址：9001","app":"libra","data":[]}
+{"level":"info","time":"2020-12-26T11:13:40.056+0800","caller":"log/log.go:54","msg":"http-服务加载成功, 访问地址：9001","app":"libra","data":[]}
+{"level":"info","time":"2020-12-26T11:15:47.606+0800","caller":"log/log.go:54","msg":"http-服务加载成功, 访问地址：9001","app":"libra","data":[]}
+{"level":"info","time":"2020-12-26T11:16:55.327+0800","caller":"log/log.go:54","msg":"添加worker","app":"libra","data":[]}
+{"level":"info","time":"2020-12-26T11:16:55.327+0800","caller":"log/log.go:54","msg":"http-服务加载成功, 访问地址：9001","app":"libra","data":[]}
+{"level":"info","time":"2020-12-26T11:19:35.361+0800","caller":"log/log.go:54","msg":"添加worker","app":"libra","data":[]}
+{"level":"info","time":"2020-12-26T11:19:35.361+0800","caller":"log/log.go:54","msg":"server启动完毕","app":"libra","data":[]}
+{"level":"info","time":"2020-12-26T11:19:35.362+0800","caller":"log/log.go:54","msg":"http-服务加载成功, 访问地址：9001","app":"libra","data":[]}
+{"level":"info","time":"2020-12-26T11:21:06.625+0800","caller":"log/log.go:54","msg":"添加worker","app":"libra","data":[]}
+{"level":"info","time":"2020-12-26T11:21:06.625+0800","caller":"log/log.go:54","msg":"启动worker","app":"libra","data":[]}
+{"level":"info","time":"2020-12-26T11:21:06.626+0800","caller":"log/log.go:54","msg":"任务开始执行","app":"libra","data":[]}
+{"level":"info","time":"2020-12-26T11:26:38.893+0800","caller":"log/log.go:54","msg":"添加worker","app":"libra","data":[]}
+{"level":"info","time":"2020-12-26T11:26:38.894+0800","caller":"log/log.go:54","msg":"http-服务加载成功, 访问地址：9001","app":"libra","data":[]}
+{"level":"info","time":"2020-12-26T11:28:13.498+0800","caller":"log/log.go:54","msg":"添加worker","app":"libra","data":[]}
+{"level":"info","time":"2020-12-26T11:28:13.499+0800","caller":"log/log.go:54","msg":"http-服务加载成功, 访问地址：9001","app":"libra","data":[]}
+{"level":"info","time":"2020-12-26T11:28:13.499+0800","caller":"log/log.go:54","msg":"http-服务加载成功, 访问地址：9001","app":"libra","data":[]}
+{"level":"info","time":"2020-12-26T11:30:40.412+0800","caller":"log/log.go:54","msg":"添加worker","app":"libra","data":[]}
+{"level":"info","time":"2020-12-26T11:30:40.413+0800","caller":"log/log.go:54","msg":"http-服务加载成功, 访问地址：9002","app":"libra","data":[]}
+{"level":"info","time":"2020-12-26T11:30:40.413+0800","caller":"log/log.go:54","msg":"http-服务加载成功, 访问地址：9002","app":"libra","data":[]}
+{"level":"info","time":"2020-12-26T11:31:39.003+0800","caller":"log/log.go:54","msg":"添加worker","app":"libra","data":[]}
+{"level":"info","time":"2020-12-26T11:31:39.004+0800","caller":"log/log.go:54","msg":"http-服务加载成功, 访问地址：9002","app":"libra","data":[]}
+{"level":"info","time":"2020-12-26T11:31:39.004+0800","caller":"log/log.go:54","msg":"http-服务加载成功, 访问地址：9002","app":"libra","data":[]}
+{"level":"info","time":"2020-12-26T11:32:21.141+0800","caller":"log/log.go:54","msg":"添加worker","app":"libra","data":[]}
+{"level":"info","time":"2020-12-26T11:32:21.142+0800","caller":"log/log.go:54","msg":"http-服务加载成功, 访问地址：9001","app":"libra","data":[]}
+{"level":"info","time":"2020-12-26T11:32:21.142+0800","caller":"log/log.go:54","msg":"http-服务加载成功, 访问地址：9002","app":"libra","data":[]}
+{"level":"info","time":"2020-12-26T11:35:15.485+0800","caller":"log/log.go:54","msg":"添加worker","app":"libra","data":[]}
+{"level":"info","time":"2020-12-26T11:35:15.486+0800","caller":"log/log.go:54","msg":"http-服务加载成功, 访问地址：9001","app":"libra","data":[]}
+{"level":"info","time":"2020-12-26T11:35:15.486+0800","caller":"log/log.go:54","msg":"http-服务加载成功, 访问地址：9002","app":"libra","data":[]}
+{"level":"info","time":"2020-12-26T12:35:06.156+0800","caller":"log/log.go:54","msg":"添加worker","app":"libra","data":[]}
+{"level":"info","time":"2020-12-26T12:35:06.157+0800","caller":"log/log.go:54","msg":"http-服务加载成功, 访问地址：9001","app":"libra","data":[]}
+{"level":"info","time":"2020-12-26T12:35:48.339+0800","caller":"log/log.go:54","msg":"添加worker","app":"libra","data":[]}
+{"level":"info","time":"2020-12-26T12:38:13.540+0800","caller":"log/log.go:54","msg":"添加worker","app":"libra","data":[]}
+{"level":"info","time":"2020-12-26T12:38:13.541+0800","caller":"log/log.go:54","msg":"启动worker","app":"libra","data":[]}
+{"level":"info","time":"2020-12-26T12:38:13.541+0800","caller":"log/log.go:54","msg":"http-服务加载成功, 访问地址：9001","app":"libra","data":[]}
+{"level":"info","time":"2020-12-26T12:38:13.541+0800","caller":"log/log.go:54","msg":"任务开始执行","app":"libra","data":[]}
+{"level":"info","time":"2020-12-26T12:39:21.016+0800","caller":"log/log.go:54","msg":"添加worker","app":"libra","data":[]}
+{"level":"info","time":"2020-12-26T12:39:21.017+0800","caller":"log/log.go:54","msg":"启动worker","app":"libra","data":[]}
+{"level":"info","time":"2020-12-26T12:39:21.017+0800","caller":"log/log.go:54","msg":"任务开始执行","app":"libra","data":[]}
+{"level":"info","time":"2020-12-26T12:40:09.909+0800","caller":"log/log.go:54","msg":"添加worker","app":"libra","data":[]}
+{"level":"info","time":"2020-12-26T12:41:39.132+0800","caller":"log/log.go:54","msg":"添加worker","app":"libra","data":[]}
+{"level":"info","time":"2020-12-26T12:41:49.885+0800","caller":"log/log.go:54","msg":"添加worker","app":"libra","data":[]}
+{"level":"info","time":"2020-12-26T12:44:56.279+0800","caller":"log/log.go:54","msg":"添加worker","app":"libra","data":[]}
+{"level":"info","time":"2020-12-26T12:44:56.280+0800","caller":"log/log.go:54","msg":"启动worker","app":"libra","data":[]}
+{"level":"info","time":"2020-12-26T12:44:56.280+0800","caller":"log/log.go:54","msg":"http-服务加载成功, 访问地址：9001","app":"libra","data":[]}
+{"level":"info","time":"2020-12-26T12:44:56.280+0800","caller":"log/log.go:54","msg":"任务开始执行","app":"libra","data":[]}
+{"level":"info","time":"2020-12-26T12:51:47.933+0800","caller":"log/log.go:54","msg":"http-服务加载成功, 访问地址：9001","app":"libra","data":[]}
+{"level":"info","time":"2020-12-26T12:53:41.899+0800","caller":"log/log.go:54","msg":"任务开始执行","app":"libra","data":[]}
+{"level":"info","time":"2020-12-26T12:53:41.899+0800","caller":"log/log.go:54","msg":"http-服务加载成功, 访问地址：9001","app":"libra","data":[]}
+{"level":"info","time":"2020-12-26T13:01:07.939+0800","caller":"log/log.go:54","msg":"任务开始执行","app":"libra","data":[]}
+{"level":"info","time":"2020-12-26T13:01:07.939+0800","caller":"log/log.go:54","msg":"http-服务加载成功, 访问地址：9001","app":"libra","data":[]}
+{"level":"info","time":"2020-12-26T14:18:40.556+0800","caller":"log/log.go:54","msg":"任务开始执行","app":"libra","data":[]}
+{"level":"info","time":"2020-12-26T14:18:40.556+0800","caller":"log/log.go:54","msg":"http-服务加载成功, 访问地址：9001","app":"libra","data":[]}
+{"level":"info","time":"2020-12-26T14:23:39.932+0800","caller":"log/log.go:54","msg":"任务开始执行","app":"libra","data":[]}
+{"level":"info","time":"2020-12-26T14:23:39.932+0800","caller":"log/log.go:54","msg":"http-服务加载成功, 访问地址：9001","app":"libra","data":[]}
+{"level":"info","time":"2020-12-26T14:24:59.538+0800","caller":"log/log.go:54","msg":"http-服务加载成功, 访问地址：9001","app":"libra","data":[]}
+{"level":"info","time":"2020-12-26T14:31:22.541+0800","caller":"log/log.go:54","msg":"http-服务加载成功, 访问地址：9001","app":"libra","data":[]}
+{"level":"info","time":"2020-12-26T14:31:24.006+0800","caller":"log/log.go:54","msg":"任务开始执行111","app":"libra","data":[]}
+{"level":"info","time":"2020-12-26T14:31:26.000+0800","caller":"log/log.go:54","msg":"任务开始执行111","app":"libra","data":[]}
+{"level":"info","time":"2020-12-26T14:31:28.005+0800","caller":"log/log.go:54","msg":"任务开始执行111","app":"libra","data":[]}
+{"level":"info","time":"2020-12-26T14:31:30.005+0800","caller":"log/log.go:54","msg":"任务开始执行111","app":"libra","data":[]}
+{"level":"info","time":"2020-12-26T14:31:32.005+0800","caller":"log/log.go:54","msg":"任务开始执行111","app":"libra","data":[]}
+{"level":"info","time":"2020-12-26T14:31:34.004+0800","caller":"log/log.go:54","msg":"任务开始执行111","app":"libra","data":[]}
+{"level":"info","time":"2020-12-26T14:31:36.004+0800","caller":"log/log.go:54","msg":"任务开始执行111","app":"libra","data":[]}
+{"level":"info","time":"2020-12-26T14:31:38.005+0800","caller":"log/log.go:54","msg":"任务开始执行111","app":"libra","data":[]}
+{"level":"info","time":"2020-12-26T14:35:20.082+0800","caller":"log/log.go:54","msg":"http-服务加载成功, 访问地址：9001","app":"libra","data":[]}
+{"level":"info","time":"2020-12-26T14:35:22.006+0800","caller":"log/log.go:54","msg":"任务开始执行111","app":"libra","data":[]}
+{"level":"info","time":"2020-12-26T14:35:24.005+0800","caller":"log/log.go:54","msg":"任务开始执行111","app":"libra","data":[]}
+{"level":"info","time":"2020-12-26T14:35:26.004+0800","caller":"log/log.go:54","msg":"任务开始执行111","app":"libra","data":[]}
+{"level":"info","time":"2020-12-26T14:35:28.005+0800","caller":"log/log.go:54","msg":"任务开始执行111","app":"libra","data":[]}
+{"level":"info","time":"2020-12-26T14:35:30.005+0800","caller":"log/log.go:54","msg":"任务开始执行111","app":"libra","data":[]}
+{"level":"info","time":"2020-12-26T14:36:46.738+0800","caller":"log/log.go:54","msg":"http-服务加载成功, 访问地址：9001","app":"libra","data":[]}
+{"level":"info","time":"2020-12-26T14:36:48.006+0800","caller":"log/log.go:54","msg":"任务开始执行222","app":"libra","data":[]}
+{"level":"info","time":"2020-12-26T14:36:48.006+0800","caller":"log/log.go:54","msg":"任务开始执行111","app":"libra","data":[]}
+{"level":"info","time":"2020-12-26T14:36:50.005+0800","caller":"log/log.go:54","msg":"任务开始执行111","app":"libra","data":[]}
+{"level":"info","time":"2020-12-26T14:36:50.005+0800","caller":"log/log.go:54","msg":"任务开始执行222","app":"libra","data":[]}
+{"level":"info","time":"2020-12-26T14:36:52.005+0800","caller":"log/log.go:54","msg":"任务开始执行111","app":"libra","data":[]}
+{"level":"info","time":"2020-12-26T14:36:52.005+0800","caller":"log/log.go:54","msg":"任务开始执行222","app":"libra","data":[]}
+{"level":"info","time":"2020-12-26T14:36:54.005+0800","caller":"log/log.go:54","msg":"任务开始执行222","app":"libra","data":[]}
+{"level":"info","time":"2020-12-26T14:36:54.005+0800","caller":"log/log.go:54","msg":"任务开始执行111","app":"libra","data":[]}
+{"level":"info","time":"2020-12-26T14:36:56.005+0800","caller":"log/log.go:54","msg":"任务开始执行111","app":"libra","data":[]}
+{"level":"info","time":"2020-12-26T14:36:56.005+0800","caller":"log/log.go:54","msg":"任务开始执行222","app":"libra","data":[]}
+{"level":"info","time":"2020-12-26T14:36:58.004+0800","caller":"log/log.go:54","msg":"任务开始执行111","app":"libra","data":[]}
+{"level":"info","time":"2020-12-26T14:36:58.004+0800","caller":"log/log.go:54","msg":"任务开始执行222","app":"libra","data":[]}

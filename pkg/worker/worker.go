@@ -1,6 +1,12 @@
 package worker
 
-type Worker interface {
-	Run() error
-	Stop() error
+type Worker struct {
+	workerName string
+	workerCron string
+	Task       func()
+}
+
+func New() Worker {
+	woker := Worker{}
+	return woker
 }

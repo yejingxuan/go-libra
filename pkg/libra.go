@@ -2,13 +2,16 @@ package libra
 
 import (
 	"fmt"
+	"sync"
+
 	"github.com/gin-gonic/gin"
+	"github.com/robfig/cron"
 	"github.com/spf13/viper"
+	"golang.org/x/sync/errgroup"
+
 	"github.com/yejingxuan/go-libra/pkg/conf"
 	"github.com/yejingxuan/go-libra/pkg/log"
 	"github.com/yejingxuan/go-libra/pkg/worker"
-	"golang.org/x/sync/errgroup"
-	"sync"
 )
 
 type Application struct {
@@ -65,13 +68,19 @@ func (app *Application) Start() (err error) {
 //启动服务
 func (app *Application) Run(fns ...func() error) (err error) {
 	//执行系统必须要运行服务
-	app.runOnce.Do(func() {
-		err = SerialUntilError(
-			app.startServers,
-		)()
-	})
+	app.wg.Add(2)
+	go func() {
+		defer app.wg.Done()
+		app.startServers()
+	}()
+	go func() {
+		defer app.wg.Done()
+		app.startWorkers()
+	}()
 	//执行自定义服务
-	return SerialUntilError(fns...)()
+	SerialUntilError(fns...)()
+	app.wg.Wait()
+	return nil
 }
 
 /*func (app *Application) cycleRun(servers func() error) {
@@ -83,7 +92,7 @@ func (app *Application) Run(fns ...func() error) (err error) {
 	app.wg.Wait()
 }*/
 
-// 迭代执行
+//迭代执行
 func SerialUntilError(fns ...func() error) func() error {
 	return func() error {
 		for _, fn := range fns {
@@ -150,6 +159,29 @@ func (app *Application) startServers() error {
 		default:
 			log.Info("no support")
 		}
+	}
+	return eg.Wait()
+}
+
+//添加server到启动任务
+func (app *Application) AppendWorkes(worker ...worker.Worker) error {
+	app.smu.Lock()
+	defer app.smu.Unlock()
+	app.workers = append(app.workers, worker...)
+	return nil
+}
+
+//启动workers
+func (app *Application) startWorkers() error {
+	var eg errgroup.Group
+	for _, item := range app.workers {
+		worker := item
+		eg.Go(func() (err error) {
+			c := cron.New()
+			c.AddFunc("0/2 * * * * ?", worker.Task)
+			c.Start()
+			return nil
+		})
 	}
 	return eg.Wait()
 }
