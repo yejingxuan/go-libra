@@ -32,17 +32,19 @@ func httpServer() *gin.Engine {
 }
 
 func weatherWorker() worker.Worker {
-	worker := worker.New()
-	worker.Task = func() {
+	worker := worker.StdConfig().Build(func() {
 		log.Info("任务开始执行111")
-	}
+	})
 	return worker
 }
 
 func eatWorker() worker.Worker {
-	worker := worker.New()
-	worker.Task = func() {
-		log.Info("任务开始执行222")
+	config := worker.WorkerConfig{
+		WorkerName: "eatWorker",
+		WorkerCron: "0/5 * * * * ",
 	}
+	worker := config.Build(func() {
+		log.Info(config.WorkerName + "任务开始执行222")
+	})
 	return worker
 }

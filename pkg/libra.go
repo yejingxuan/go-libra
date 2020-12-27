@@ -178,7 +178,7 @@ func (app *Application) startWorkers() error {
 		worker := item
 		eg.Go(func() (err error) {
 			c := cron.New()
-			c.AddFunc("0/2 * * * * ?", worker.Task)
+			c.AddFunc(worker.Config.WorkerCron, worker.GetTask())
 			c.Start()
 			return nil
 		})
