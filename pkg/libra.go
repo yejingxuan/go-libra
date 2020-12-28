@@ -2,12 +2,14 @@ package libra
 
 import (
 	"fmt"
+	"net"
 	"sync"
 
 	"github.com/gin-gonic/gin"
 	"github.com/robfig/cron"
 	"github.com/spf13/viper"
 	"golang.org/x/sync/errgroup"
+	"google.golang.org/grpc"
 
 	"github.com/yejingxuan/go-libra/pkg/conf"
 	"github.com/yejingxuan/go-libra/pkg/log"
@@ -152,8 +154,19 @@ func (app *Application) startServers() error {
 		switch server := item.(type) {
 		case *gin.Engine:
 			eg.Go(func() (err error) {
-				log.Info(fmt.Sprintf("http-服务加载成功, 访问地址：%d", viper.GetInt("server.http_port")))
+				log.Info(fmt.Sprintf("http-服务加载成功, 访问地址:%d", viper.GetInt("server.http_port")))
 				err = server.Run(fmt.Sprintf(":%d", viper.GetInt("server.http_port")))
+				return err
+			})
+		case *grpc.Server:
+			eg.Go(func() (err error) {
+				log.Info(fmt.Sprintf("grpc-服务加载成功, 访问地址:%s, 协议:%s", viper.GetString("server.grpc_port"), viper.GetString("server.grpc_protocol")))
+				listen, err := net.Listen(viper.GetString("server.grpc_protocol"), fmt.Sprintf(":%d", viper.GetInt("server.grpc_port")))
+				if err != nil {
+					log.Error("listen err:", err)
+					return err
+				}
+				err = server.Serve(listen)
 				return err
 			})
 		default:

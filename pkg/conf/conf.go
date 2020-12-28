@@ -28,4 +28,9 @@ func loadDefaultConfig() {
 	viper.SetDefault("general.log_path", "./log/")
 
 	viper.SetDefault("server.http_port", 9001)
+	viper.SetDefault("server.grpc_port", 8001)
+	viper.SetDefault("server.grpc_protocol", "tcp")
+
+	viper.SetDefault("worker.name", "libra")
+	viper.SetDefault("worker.corn", "0/2 * * * * ?")
 }

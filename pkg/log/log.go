@@ -27,14 +27,16 @@ func InitZapLog() error {
 		EncoderConfig: zapcore.EncoderConfig{
 			TimeKey:        "time",
 			LevelKey:       "level",
+			NameKey:        "logger",
 			CallerKey:      "caller",
 			MessageKey:     "msg",
-			StacktraceKey:  "stack",
+			StacktraceKey:  "stacktrace",
 			LineEnding:     zapcore.DefaultLineEnding,
 			EncodeLevel:    zapcore.LowercaseLevelEncoder,
 			EncodeTime:     zapcore.ISO8601TimeEncoder,
 			EncodeDuration: zapcore.SecondsDurationEncoder,
 			EncodeCaller:   zapcore.ShortCallerEncoder,
+			EncodeName:     zapcore.FullNameEncoder,
 		},
 		OutputPaths:      []string{infoPath, "stdout"},
 		ErrorOutputPaths: []string{errPath, "stderr"},
@@ -42,11 +44,12 @@ func InitZapLog() error {
 			"app": viper.GetString("general.app_name"),
 		},
 	}
-	var err error
-	Logger, err = cfg.Build()
+
+	logger, err := cfg.Build(zap.AddCallerSkip(1))
 	if err != nil {
 		return err
 	}
+	Logger = logger
 	return nil
 }
 

@@ -112,3 +112,11 @@
 {"level":"info","time":"2020-12-27T10:33:15.004+0800","caller":"log/log.go:54","msg":"eatWorker任务开始执行222","app":"libra","data":[]}
 {"level":"info","time":"2020-12-27T10:33:16.005+0800","caller":"log/log.go:54","msg":"任务开始执行111","app":"libra","data":[]}
 {"level":"info","time":"2020-12-27T10:33:18.005+0800","caller":"log/log.go:54","msg":"任务开始执行111","app":"libra","data":[]}
+{"level":"info","time":"2020-12-28T10:00:39.388+0800","caller":"log/log.go:54","msg":"http-服务加载成功, 访问地址：9001","app":"libra","data":[]}
+{"level":"info","time":"2020-12-28T10:00:40.028+0800","caller":"log/log.go:54","msg":"eatWorker任务开始执行222","app":"libra","data":[]}
+{"level":"info","time":"2020-12-28T10:00:45.011+0800","caller":"log/log.go:54","msg":"eatWorker任务开始执行222","app":"libra","data":[]}
+{"level":"info","time":"2020-12-28T10:00:50.000+0800","caller":"log/log.go:54","msg":"eatWorker任务开始执行222","app":"libra","data":[]}
+{"level":"info","time":"2020-12-28T10:01:47.051+0800","caller":"log/log.go:54","msg":"http-服务加载成功, 访问地址：9001","app":"libra","data":[]}
+{"level":"info","time":"2020-12-28T10:01:50.023+0800","caller":"log/log.go:54","msg":"eatWorker任务开始执行222","app":"libra","data":[]}
+{"level":"info","time":"2020-12-28T14:48:48.091+0800","caller":"log/log.go:54","msg":"grpc-服务加载成功, 访问地址：0","app":"libra","data":[]}
+{"level":"info","time":"2020-12-28T14:48:48.091+0800","caller":"log/log.go:54","msg":"http-服务加载成功, 访问地址：9001","app":"libra","data":[]}

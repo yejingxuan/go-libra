@@ -1,5 +1,9 @@
 package worker
 
+import (
+	"github.com/spf13/viper"
+)
+
 type Worker struct {
 	Config WorkerConfig
 	task   func()
@@ -10,10 +14,29 @@ type WorkerConfig struct {
 	WorkerCron string
 }
 
-func StdConfig() WorkerConfig {
+//默认配置
+func DefaultConfig() WorkerConfig {
 	config := WorkerConfig{
-		WorkerName: "woker-libra",
-		WorkerCron: "0/2 * * * * ?",
+		WorkerName: viper.GetString("worker.name"),
+		WorkerCron: viper.GetString("worker.corn"),
+	}
+	return config
+}
+
+//标准配置
+func StdConfig(name string) WorkerConfig {
+	config := WorkerConfig{
+		WorkerName: viper.GetString("worker." + name + ".name"),
+		WorkerCron: viper.GetString("worker." + name + ".corn"),
+	}
+	return config
+}
+
+//自定义配置
+func RawConfig(name string) WorkerConfig {
+	config := WorkerConfig{
+		WorkerName: viper.GetString(name + ".name"),
+		WorkerCron: viper.GetString(name + ".corn"),
 	}
 	return config
 }

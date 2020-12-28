@@ -4,12 +4,22 @@ log_level = 1
 log_path = "./log/"
 
 [server]
-http_port = 9001
+http_port = 9002
+grpc_port = 8001
+grpc_protocol = "tcp"
 
 [database]
 dsn = "postgres://postgres:postgres@127.0.0.1:5432/postgres?sslmode=disable"
 max_open_connections = 1000
 max_idle_connections = 2
 log_mode = true
+
+[worker.weather]
+name = "weather"
+corn = "0/2 * * * * ?"
+
+[worker.eat]
+name = "eat"
+corn = "0/5 * * * * ?"
 
 [system]
