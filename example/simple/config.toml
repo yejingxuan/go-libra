@@ -7,6 +7,8 @@ log_path = "./log/"
 http_port = 9002
 grpc_port = 8001
 grpc_protocol = "tcp"
+# 开启链路追踪
+grpc_trace_enable = true
 
 [database]
 dsn = "postgres://postgres:postgres@127.0.0.1:5432/postgres?sslmode=disable"
@@ -16,10 +18,8 @@ log_mode = true
 
 [worker.weather]
 name = "weather"
-corn = "0/2 * * * * ?"
+corn = "0/50 * * * * ?"
 
-[worker.eat]
-name = "eat"
-corn = "0/5 * * * * ?"
-
-[system]
+[system.trace]
+serviceName = "simple-svr"
+hostPort = "127.0.0.1:6831"

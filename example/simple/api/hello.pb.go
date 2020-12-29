@@ -4,7 +4,7 @@
 // 	protoc        v3.7.1
 // source: search.proto
 
-package api
+package hello
 
 import (
 	context "context"

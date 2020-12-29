@@ -30,7 +30,11 @@ func loadDefaultConfig() {
 	viper.SetDefault("server.http_port", 9001)
 	viper.SetDefault("server.grpc_port", 8001)
 	viper.SetDefault("server.grpc_protocol", "tcp")
+	viper.SetDefault("server.grpc_trace_enable", false)
 
 	viper.SetDefault("worker.name", "libra")
 	viper.SetDefault("worker.corn", "0/2 * * * * ?")
+
+	viper.SetDefault("system.trace.serviceName", "libra")
+	viper.SetDefault("hostPort", "127.0.0.1:6831")
 }

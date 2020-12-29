@@ -56,7 +56,6 @@ func (app *Application) Start() (err error) {
 			app.printBanner,
 			app.loadConfig,
 			app.initLogger,
-
 			/*app.initLogger,
 			app.initMaxProcs,
 			app.initTracer,
@@ -186,6 +185,7 @@ func (app *Application) AppendWorkes(worker ...worker.Worker) error {
 
 //启动workers
 func (app *Application) startWorkers() error {
+	log.Info("启动worker")
 	var eg errgroup.Group
 	for _, item := range app.workers {
 		worker := item
@@ -193,6 +193,9 @@ func (app *Application) startWorkers() error {
 			c := cron.New()
 			c.AddFunc(worker.Config.WorkerCron, worker.GetTask())
 			c.Start()
+			select {
+
+			}
 			return nil
 		})
 	}

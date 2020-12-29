@@ -1,0 +1,13 @@
+[general]
+app_name = "search"
+log_level = 1
+log_path = "./log/"
+
+[server]
+grpc_port = 8002
+grpc_protocol = "tcp"
+grpc_trace_enable = true
+
+[system.trace]
+serviceName = "search-svr"
+hostPort = "127.0.0.1:6831"

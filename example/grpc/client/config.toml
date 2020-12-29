@@ -1,0 +1,12 @@
+[general]
+app_name = "libra"
+log_level = 1
+log_path = "./log/"
+
+[server]
+grpc_trace_enable = true
+
+
+[system.trace]
+serviceName = "client-svr"
+hostPort = "127.0.0.1:6831"

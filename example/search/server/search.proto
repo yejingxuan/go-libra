@@ -1,0 +1,21 @@
+syntax = "proto3"; // 指定proto版本
+package server;     // 指定默认包名
+
+// 指定golang包名
+option go_package = "server";
+
+// 定义Hello服务
+service Search {
+  // 全文检索
+  rpc FTRSearch(FTRSearchReq) returns (FTRSearchRep) {}
+}
+
+// HelloRequest 请求结构
+message FTRSearchReq {
+  string key = 1;
+}
+
+// HelloResponse 响应结构
+message FTRSearchRep {
+  string result = 1;
+}

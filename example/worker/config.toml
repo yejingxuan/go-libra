@@ -1,0 +1,12 @@
+[general]
+app_name = "libra"
+log_level = 1
+log_path = "./log/"
+
+[worker.weather]
+name = "weather"
+corn = "0/2 * * * * ?"
+
+[worker.eat]
+name = "eat"
+corn = "0/5 * * * * ?"
