@@ -1,5 +1,6 @@
 codeStyles
 *.idea
+*.vscode
 *.iml
 *.cmd
 *.classpath
@@ -15,4 +16,4 @@ codeStyles
 
 */mvnw
 
-**/log
+/log/
