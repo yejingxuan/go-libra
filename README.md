@@ -94,3 +94,4 @@ func weatherWorker() worker.Worker {
 	```
 - 可视化页面查询链路
   - 访问地址 http://localhost:16686
+  ![](https://gitee.com/jingxuanye/yjx-pictures/raw/master/pic/20201230151609.png)
