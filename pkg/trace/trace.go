@@ -4,7 +4,6 @@ import (
 	"fmt"
 	"github.com/opentracing/opentracing-go"
 	"github.com/spf13/viper"
-	"github.com/uber/jaeger-client-go"
 	"github.com/uber/jaeger-client-go/config"
 	"io"
 )
@@ -29,7 +28,7 @@ func rawConfig(name string) ConfigTrace {
 
 func (stdConfig ConfigTrace) Build() (opentracing.Tracer, io.Closer, error) {
 	cfg := &config.Configuration{
-		//ServiceName: config.ServiceName,
+		ServiceName: stdConfig.ServiceName,
 		Sampler: &config.SamplerConfig{
 			Type:  "const",
 			Param: 1,
@@ -39,11 +38,10 @@ func (stdConfig ConfigTrace) Build() (opentracing.Tracer, io.Closer, error) {
 			LocalAgentHostPort: stdConfig.HostPort,
 		},
 	}
-
-	tracer, closer, err := cfg.New(stdConfig.ServiceName, config.Logger(jaeger.StdLogger))
-	/*tracer, _, err := cfg.NewTracer()*/
+	//tracer, closer, err := cfg.New(stdConfig.ServiceName, config.Logger(jaeger.StdLogger))
+	tracer, closer, err := cfg.NewTracer()
 	if err != nil {
-		return nil, nil, nil
+		return tracer, closer, err
 	}
 	opentracing.SetGlobalTracer(tracer)
 	return tracer, closer, err

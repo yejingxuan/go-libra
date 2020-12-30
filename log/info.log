@@ -120,3 +120,16 @@
 {"level":"info","time":"2020-12-28T10:01:50.023+0800","caller":"log/log.go:54","msg":"eatWorker任务开始执行222","app":"libra","data":[]}
 {"level":"info","time":"2020-12-28T14:48:48.091+0800","caller":"log/log.go:54","msg":"grpc-服务加载成功, 访问地址：0","app":"libra","data":[]}
 {"level":"info","time":"2020-12-28T14:48:48.091+0800","caller":"log/log.go:54","msg":"http-服务加载成功, 访问地址：9001","app":"libra","data":[]}
+{"level":"info","time":"2020-12-30T10:19:19.404+0800","caller":"pkg/libra.go:162","msg":"grpc-服务加载成功, 访问地址:8001, 协议:tcp","app":"libra","data":[]}
+{"level":"info","time":"2020-12-30T10:19:19.404+0800","caller":"pkg/libra.go:188","msg":"启动worker","app":"libra","data":[]}
+{"level":"info","time":"2020-12-30T10:19:19.406+0800","caller":"pkg/libra.go:156","msg":"http-服务加载成功, 访问地址:9001","app":"libra","data":[]}
+{"level":"info","time":"2020-12-30T10:19:29.619+0800","caller":"api/hello_greeter.go:20","msg":"hello request: %s","app":"libra","data":["gRPC"]}
+{"level":"info","time":"2020-12-30T10:22:30.793+0800","caller":"pkg/libra.go:188","msg":"启动worker","app":"libra","data":[]}
+{"level":"info","time":"2020-12-30T10:22:30.793+0800","caller":"pkg/libra.go:162","msg":"grpc-服务加载成功, 访问地址:8001, 协议:tcp","app":"libra","data":[]}
+{"level":"info","time":"2020-12-30T10:22:30.793+0800","caller":"pkg/libra.go:156","msg":"http-服务加载成功, 访问地址:9001","app":"libra","data":[]}
+{"level":"info","time":"2020-12-30T10:22:48.230+0800","caller":"pkg/libra.go:162","msg":"grpc-服务加载成功, 访问地址:8001, 协议:tcp","app":"libra","data":[]}
+{"level":"info","time":"2020-12-30T10:22:48.230+0800","caller":"pkg/libra.go:156","msg":"http-服务加载成功, 访问地址:9001","app":"libra","data":[]}
+{"level":"info","time":"2020-12-30T10:22:48.229+0800","caller":"pkg/libra.go:188","msg":"启动worker","app":"libra","data":[]}
+{"level":"info","time":"2020-12-30T10:23:35.114+0800","caller":"pkg/libra.go:162","msg":"grpc-服务加载成功, 访问地址:8001, 协议:tcp","app":"libra","data":[]}
+{"level":"info","time":"2020-12-30T10:23:35.114+0800","caller":"pkg/libra.go:188","msg":"启动worker","app":"libra","data":[]}
+{"level":"info","time":"2020-12-30T10:23:35.115+0800","caller":"pkg/libra.go:156","msg":"http-服务加载成功, 访问地址:9001","app":"libra","data":[]}

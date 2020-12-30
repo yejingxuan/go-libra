@@ -2,6 +2,7 @@ package server
 
 import (
 	"fmt"
+	"github.com/grpc-ecosystem/grpc-opentracing/go/otgrpc"
 	"github.com/spf13/viper"
 	"github.com/yejingxuan/go-libra/pkg/trace"
 	"google.golang.org/grpc"
@@ -29,7 +30,9 @@ func (config GrpcConfig) Build() *grpc.Server {
 	if config.TraceEnable {
 		//开启链路追踪
 		tracer, _, _ := trace.StdConfig().Build()
-		server := grpc.NewServer(trace.ServerOption(tracer))
+		server := grpc.NewServer(
+			grpc.UnaryInterceptor(otgrpc.OpenTracingServerInterceptor(tracer)),
+			grpc.StreamInterceptor(otgrpc.OpenTracingStreamServerInterceptor(tracer)))
 		return server
 	}
 	return grpc.NewServer()

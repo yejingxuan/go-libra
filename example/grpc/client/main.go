@@ -2,6 +2,7 @@ package main
 
 import (
 	"context"
+	"github.com/grpc-ecosystem/grpc-opentracing/go/otgrpc"
 	"github.com/yejingxuan/go-libra/example/grpc/client/api"
 	libra "github.com/yejingxuan/go-libra/pkg"
 	"github.com/yejingxuan/go-libra/pkg/log"
@@ -20,8 +21,9 @@ func main() {
 func testRpc() error {
 	// 连接
 	tracer, closer, _ := trace.StdConfig().Build()
-	conn, _ := grpc.Dial(":8001", grpc.WithInsecure(), trace.ClientDialOption(tracer))
-
+	conn, _ := grpc.Dial(":8001", grpc.WithInsecure(),
+		grpc.WithUnaryInterceptor(otgrpc.OpenTracingClientInterceptor(tracer)),
+		grpc.WithStreamInterceptor(otgrpc.OpenTracingStreamClientInterceptor(tracer)))
 	defer closer.Close()
 	defer conn.Close()
 
