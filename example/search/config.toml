@@ -9,5 +9,5 @@ grpc_protocol = "tcp"
 grpc_trace_enable = true
 
 [system.trace]
-serviceName = "search-svr"
-hostPort = "127.0.0.1:6831"
+service_name = "search-svr"
+host_port = "127.0.0.1:6831"

@@ -2,12 +2,10 @@ package main
 
 import (
 	"context"
-	"github.com/grpc-ecosystem/grpc-opentracing/go/otgrpc"
 	"github.com/yejingxuan/go-libra/example/grpc/client/api"
 	libra "github.com/yejingxuan/go-libra/pkg"
 	"github.com/yejingxuan/go-libra/pkg/log"
-	"github.com/yejingxuan/go-libra/pkg/trace"
-	"google.golang.org/grpc"
+	"github.com/yejingxuan/go-libra/pkg/server"
 )
 
 func main() {
@@ -19,24 +17,23 @@ func main() {
 }
 
 func testRpc() error {
-	// 连接
-	tracer, closer, _ := trace.StdConfig().Build()
-	conn, _ := grpc.Dial(":8001", grpc.WithInsecure(),
+	/*tracer, closer, _ := trace.StdConfig().Build()
+	conn, _ := grpc.Dial("127.0.0.1:8001", grpc.WithInsecure(),
 		grpc.WithUnaryInterceptor(otgrpc.OpenTracingClientInterceptor(tracer)),
-		grpc.WithStreamInterceptor(otgrpc.OpenTracingStreamClientInterceptor(tracer)))
-	defer closer.Close()
-	defer conn.Close()
-
-	// 初始化客户端
+		grpc.WithStreamInterceptor(otgrpc.OpenTracingStreamClientInterceptor(tracer)))*/
+	//初始化客户端
+	conn, closer := server.GrpcClientStdConfig("hello").Build()
 	c := api.NewHelloClient(conn)
-
 	// 调用方法
-	req := &api.HelloRequest{Name: "gRPC"}
-	res, err := c.SayHello(context.Background(), req)
-
+	res, err := c.SayHello(context.Background(), &api.HelloRequest{Name: "gRPC"})
 	if err != nil {
-		println("err:", err.Error())
+		log.Error("sayhello调用报错", err)
 	}
 	log.Info("success:", res.GetMessage())
+
+	if closer != nil {
+		defer closer.Close()
+	}
+	defer conn.Close()
 	return nil
 }

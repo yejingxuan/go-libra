@@ -10,16 +10,14 @@ grpc_protocol = "tcp"
 # 开启链路追踪
 grpc_trace_enable = true
 
-[database]
-dsn = "postgres://postgres:postgres@127.0.0.1:5432/postgres?sslmode=disable"
-max_open_connections = 1000
-max_idle_connections = 2
-log_mode = true
 
 [worker.weather]
 name = "weather"
 corn = "0/50 * * * * ?"
 
 [system.trace]
-serviceName = "simple-svr"
-hostPort = "127.0.0.1:6831"
+service_name = "simple-svr"
+host_port = "127.0.0.1:6831"
+
+[grpc.client.search]
+host_port = "127.0.0.1:8002"

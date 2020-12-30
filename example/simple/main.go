@@ -37,7 +37,7 @@ func httpServer() *gin.Engine {
 
 //定义grpc-server
 func grpcServer() *grpc.Server {
-	server := server.GrpcStdConfig().Build()
+	server := server.GrpcServerStdConfig().Build()
 	api.RegisterHelloServer(server, hello.HelloService{})
 	return server
 }

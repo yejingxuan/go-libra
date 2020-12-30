@@ -3,13 +3,10 @@ package hello
 import (
 	"context"
 	"fmt"
-	"github.com/grpc-ecosystem/grpc-opentracing/go/otgrpc"
-	"github.com/opentracing/opentracing-go"
 	"github.com/yejingxuan/go-libra/example/grpc/client/api"
 	search_api "github.com/yejingxuan/go-libra/example/search/server"
 	"github.com/yejingxuan/go-libra/pkg/log"
-	"google.golang.org/grpc"
-	"google.golang.org/grpc/grpclog"
+	"github.com/yejingxuan/go-libra/pkg/server"
 )
 
 // 定义helloService并实现约定的接口
@@ -25,7 +22,6 @@ func (h HelloService) SayHello(ctx context.Context, in *api.HelloRequest) (*api.
 }
 
 func callSearch(ctx context.Context, key string) {
-
 	/*if parent := opentracing.SpanFromContext(ctx); parent != nil {
 		pctx := parent.Context()
 		log.Info("parentspan:%s, ctx:%s", parent, ctx)
@@ -39,27 +35,19 @@ func callSearch(ctx context.Context, key string) {
 		}
 	}*/
 	//tracer, closer, _ := trace.StdConfig().Build()
-	tracer := opentracing.GlobalTracer()
-
-	conn, err := grpc.Dial(":8002", grpc.WithInsecure(),
-		grpc.WithUnaryInterceptor(otgrpc.OpenTracingClientInterceptor(tracer)),
-		grpc.WithStreamInterceptor(otgrpc.OpenTracingStreamClientInterceptor(tracer)))
-	//conn, err := grpc.DialContext(ctx, ":8002", grpc.WithInsecure(), grpc.WithUnaryInterceptor(otgrpc.OpenTracingClientInterceptor(tracer, otgrpc.LogPayloads())))
-	if err != nil {
-		grpclog.Fatalln(err)
-	}
-	//defer closer.Close()
-	defer conn.Close()
 	// 初始化客户端
+	conn, closer := server.GrpcClientStdConfig("search").Build()
 	c := search_api.NewSearchClient(conn)
-
 	// 调用方法
-	req := &search_api.FTRSearchReq{Key: key}
-	res, err := c.FTRSearch(ctx, req)
+	res, err := c.FTRSearch(ctx, &search_api.FTRSearchReq{Key: key})
 
 	if err != nil {
-		println("err:", err.Error())
+		log.Error("callSearch调用报错", err)
 	}
-	println("success:", res.GetResult())
+	log.Info("success:", res.GetResult())
 
+	if closer != nil {
+		defer closer.Close()
+	}
+	defer conn.Close()
 }

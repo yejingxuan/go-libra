@@ -17,7 +17,7 @@ func main() {
 
 //定义grpc-server
 func grpcServer() *grpc.Server {
-	server := server.GrpcStdConfig().Build()
+	server := server.GrpcServerStdConfig().Build()
 	search_api.RegisterSearchServer(server, search_api.SearchService{})
 	return server
 }

@@ -8,5 +8,8 @@ grpc_trace_enable = true
 
 
 [system.trace]
-serviceName = "client-svr"
-hostPort = "127.0.0.1:6831"
+service_name = "client-svr"
+host_port = "127.0.0.1:6831"
+
+[grpc.client.hello]
+host_port = "127.0.0.1:8001"
