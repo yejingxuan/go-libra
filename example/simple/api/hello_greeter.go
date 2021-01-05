@@ -1,9 +1,8 @@
-package hello
+package api
 
 import (
 	"context"
 	"fmt"
-	"github.com/yejingxuan/go-libra/example/grpc/client/api"
 	search_api "github.com/yejingxuan/go-libra/example/search/server"
 	"github.com/yejingxuan/go-libra/pkg/log"
 	"github.com/yejingxuan/go-libra/pkg/server"
@@ -13,9 +12,9 @@ import (
 type HelloService struct{}
 
 // SayHello 实现Hello服务接口
-func (h HelloService) SayHello(ctx context.Context, in *api.HelloRequest) (*api.HelloResponse, error) {
+func (h HelloService) SayHello(ctx context.Context, in *HelloRequest) (*HelloResponse, error) {
 	log.Info("hello request: %s", in.Name)
-	resp := new(api.HelloResponse)
+	resp := new(HelloResponse)
 	resp.Message = fmt.Sprintf("Hello %s.", in.Name)
 	callSearch(ctx, in.Name)
 	return resp, nil

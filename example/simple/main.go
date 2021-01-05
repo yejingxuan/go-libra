@@ -2,8 +2,7 @@ package main
 
 import (
 	"github.com/gin-gonic/gin"
-	"github.com/yejingxuan/go-libra/example/grpc/client/api"
-	hello "github.com/yejingxuan/go-libra/example/simple/api"
+	"github.com/yejingxuan/go-libra/example/simple/api"
 	libra "github.com/yejingxuan/go-libra/pkg"
 	"github.com/yejingxuan/go-libra/pkg/log"
 	"github.com/yejingxuan/go-libra/pkg/server"
@@ -38,7 +37,7 @@ func httpServer() *gin.Engine {
 //定义grpc-server
 func grpcServer() *grpc.Server {
 	server := server.GrpcServerStdConfig().Build()
-	api.RegisterHelloServer(server, hello.HelloService{})
+	api.RegisterHelloServer(server, api.HelloService{})
 	return server
 }
 
