@@ -83,6 +83,15 @@ func weatherWorker() worker.Worker {
 	```
 - 开启grpc服务
 
+### 3.5、etcd
+```shell script
+# 快速搭建etcd
+docker run  -d -p 2379:2379 -p 2380:2380 -p 4001:4001  -p 7001:7001 -e "ETCD_ADVERTISE_CLIENT_URLS=http://localhost:2379" -e "ETCD_LISTEN_CLIENT_URLS=http://0.0.0.0:2379" -e "ETCD_INITIAL_ADVERTISE_PEER_URLS=http://0.0.0.0:2380" -e "ETCD_LISTEN_PEER_URLS=http://0.0.0.0:2380"  -e "ALLOW_NONE_AUTHENTICATION=yes" -e "ETCD_INITIAL_CLUSTER=node1=http://0.0.0.0:2380" -e "ETCD_NAME=node1" --name server-etcd3  bitnami/etcd:3
+# 快速搭建etcd可视化管理工具
+docker run -d -p 9222:8080 evildecay/etcdkeeper
+```
+
+
 ### 3.5、任务服务
 
 
