@@ -10,6 +10,8 @@
 		- [3.4、grpc服务](#34grpc服务)
 		- [3.5、任务服务](#35任务服务)
 		- [3.6、链路追踪](#36链路追踪)
+	- [四、规划](#四规划)
+		- [4.1、TODO](#41todo)
 
 ## 一、简介
 
@@ -104,3 +106,13 @@ docker run -d -p 9222:8080 evildecay/etcdkeeper
 - 可视化页面查询链路
   - 访问地址 http://localhost:16686
   ![](https://gitee.com/jingxuanye/yjx-pictures/raw/master/pic/20201230151609.png)
+
+## 四、规划
+
+### 4.1、TODO
+- [ ] 自定义异常
+- [ ] 工作流-workflow
+- [ ] 负载均衡
+- [ ] 路由网关限流
+- [ ] 分布式缓存
+- [ ] 搜索引擎
