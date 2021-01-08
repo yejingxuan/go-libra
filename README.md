@@ -130,7 +130,6 @@ func weatherWorker() worker.Worker {
 ## 四、规划
 
 ### 4.1、TODO
-- [ ] 自定义异常
 - [ ] 工作流-workflow
 - [ ] 负载均衡
 - [ ] 路由网关限流
