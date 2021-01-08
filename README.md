@@ -88,7 +88,14 @@ func weatherWorker() worker.Worker {
 
 ### 3.4、grpc服务
 - grpc服务安装
-
+    ```go
+    go get github.com/golang/protobuf/proto
+    go get google.golang.org/grpc
+    go get github.com/golang/protobuf/protoc-gen-go
+    //安装好后，会在GOPATH/bin下生成protoc-gen-go.exe
+    //手动下载protoc.exe，放在GOPATH/bin下
+    //注意添加 GOPATH/bin 到系统环境变量中，能够直接使用bin下的命令行工具
+    ```
 - grpc的proto文件编写
 
 - grpc的proto生成go编码
@@ -116,12 +123,46 @@ func weatherWorker() worker.Worker {
         ```go
         go get github.com/golang/protobuf/protoc-gen-go@v1.3.2
         ```
-### 3.5、任务服务
 
+### 3.5、任务服务
+- libra 提供了 corn 的定时任务组件，可以通过简单配置快速启动任务
+- 配置
+  - 任务默认执行频率为 0/2 * * * * ? 即2秒执行一次
+  - 可通过配置文件 config.toml 来快速配置任务相关信息
+    ```toml
+    [worker.weather]
+    name = "weather"
+    corn = "0/20 * * * * ?"
+    ```
+- 快速开始
+    ```go
+    package main
+
+    import (
+        libra "github.com/yejingxuan/go-libra/pkg"
+        "github.com/yejingxuan/go-libra/pkg/log"
+        "github.com/yejingxuan/go-libra/pkg/worker"
+    )
+
+    func main() {
+        app := libra.DefaultApplication()
+        app.Start()
+        app.AppendWorkes(weatherWorker()) //支持传入多个任务并行执行
+        app.Run()
+    }
+
+    //天气预报任务
+    func weatherWorker() worker.Worker {
+        worker := worker.StdConfig("weather").Build(func() {
+            log.Info("任务开始执行111")
+        })
+        return worker
+    }
+    ```
 
 ### 3.6、链路追踪
 - 采用 jaeger + opentracing 的方式来实现
-- jaeger快速搭建
+- docker快速搭建 jaeger
     ```docker
     docker run -d -e COLLECTOR_ZIPKIN_HTTP_PORT=9411 -p 5775:5775/udp -p 6831:6831/udp -p 6832:6832/udp -p 5778:5778  -p 16686:16686 -p 14268:14268  -p 14269:14269   -p 9411:9411 jaegertracing/all-in-one:latest
     ```
@@ -135,6 +176,8 @@ func weatherWorker() worker.Worker {
   - Bcrypt 加密算法（hash算法加密）
   - AES-CBC 加密算法（对称加密）
   - MD5 加密算法（不可逆加密）
+
+- 时间转换
 
 ## 四、规划
 
