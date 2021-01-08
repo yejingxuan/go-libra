@@ -11,6 +11,7 @@ import (
 	"golang.org/x/sync/errgroup"
 	"google.golang.org/grpc"
 
+	"github.com/panjf2000/ants/v2"
 	"github.com/yejingxuan/go-libra/pkg/conf"
 	"github.com/yejingxuan/go-libra/pkg/log"
 	"github.com/yejingxuan/go-libra/pkg/worker"
@@ -24,6 +25,7 @@ type Application struct {
 	initOnce    sync.Once       //保证init方法只执行一次
 	startupOnce sync.Once       //保证start方法只执行一次
 	runOnce     sync.Once       //保证run方法只执行一次
+	pool        *ants.Pool
 	servers     []interface{}   //服务
 	workers     []worker.Worker //任务
 	confPath    string          //配置文件路径
@@ -56,6 +58,7 @@ func (app *Application) Start() (err error) {
 			app.printBanner,
 			app.loadConfig,
 			app.initLogger,
+			app.initPool,
 			/*app.initLogger,
 			app.initMaxProcs,
 			app.initTracer,
@@ -70,14 +73,16 @@ func (app *Application) Start() (err error) {
 func (app *Application) Run(fns ...func() error) (err error) {
 	//执行系统必须要运行服务
 	app.wg.Add(2)
-	go func() {
-		defer app.wg.Done()
+	app.pool.Submit(func() {
 		app.startServers()
-	}()
-	go func() {
-		defer app.wg.Done()
+		app.wg.Done()
+	})
+
+	app.pool.Submit(func() {
 		app.startWorkers()
-	}()
+		app.wg.Done()
+	})
+	
 	//执行自定义服务
 	SerialUntilError(fns...)()
 	app.wg.Wait()
@@ -137,6 +142,13 @@ func (app *Application) initLogger() error {
 	return err
 }
 
+//初始化协程池
+func (app *Application) initPool() error {
+	pool, err := ants.NewPool(viper.GetInt("general.pool_size"))
+	app.pool = pool
+	return err
+}
+
 //添加server到启动任务
 func (app *Application) AppendServers(server ...interface{}) error {
 	app.smu.Lock()
@@ -155,6 +167,7 @@ func (app *Application) startServers() error {
 			eg.Go(func() (err error) {
 				log.Info(fmt.Sprintf("http-服务加载成功, 访问地址:%d", viper.GetInt("server.http_port")))
 				err = server.Run(fmt.Sprintf(":%d", viper.GetInt("server.http_port")))
+				select {}
 				return err
 			})
 		case *grpc.Server:
@@ -166,6 +179,7 @@ func (app *Application) startServers() error {
 					return err
 				}
 				err = server.Serve(listen)
+				select {}
 				return err
 			})
 		default:
@@ -185,17 +199,15 @@ func (app *Application) AppendWorkes(worker ...worker.Worker) error {
 
 //启动workers
 func (app *Application) startWorkers() error {
-	log.Info("启动worker")
 	var eg errgroup.Group
 	for _, item := range app.workers {
 		worker := item
 		eg.Go(func() (err error) {
+			log.Info("启动worker", worker.Config.WorkerName)
 			c := cron.New()
 			c.AddFunc(worker.Config.WorkerCron, worker.GetTask())
 			c.Start()
-			select {
-
-			}
+			select {}
 			return nil
 		})
 	}

@@ -1,0 +1,13 @@
+[general]
+app_name = "libra"
+pool_size = 50
+log_level = 1
+log_path = "./log/"
+
+
+
+
+
+[system.etcd]
+dndpoints = "127.0.0.1:2379"
+dial_timeout = 3

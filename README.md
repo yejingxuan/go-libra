@@ -19,6 +19,7 @@
 Golang开发快速集成框架，主要功能
 - [x] 配置——viper
 - [x] 日志——zap
+- [x] 协程池——ants
 - [x] http服务——gin
 - [x] rpc服务——grpc
 - [x] 任务服务——robfig/cron

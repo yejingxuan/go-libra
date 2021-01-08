@@ -1,5 +1,6 @@
 [general]
 app_name = "libra"
+pool_size = 50
 log_level = 1
 log_path = "./log/"
 
@@ -13,7 +14,7 @@ grpc_trace_enable = true
 
 [worker.weather]
 name = "weather"
-corn = "0/50 * * * * ?"
+corn = "0/59 * * * * ?"
 
 [system.trace]
 service_name = "simple-svr"
