@@ -11,6 +11,7 @@
     - [3.5、etcd](#35etcd)
     - [3.5、任务服务](#35任务服务)
     - [3.6、链路追踪](#36链路追踪)
+    - [3.7、工具包](#37工具包)
   - [四、规划](#四规划)
     - [4.1、TODO](#41todo)
 
@@ -24,6 +25,7 @@ Golang开发快速集成框架，主要功能
 - [x] rpc服务——grpc
 - [x] 任务服务——robfig/cron
 - [x] 链路追踪——opentracing+jaeger
+- [x] 加解密工具包 
 
 
 ## 二、quick-start
@@ -126,6 +128,13 @@ func weatherWorker() worker.Worker {
 - 可视化页面查询链路
   - 访问地址 http://localhost:16686
   ![](https://gitee.com/jingxuanye/yjx-pictures/raw/master/pic/20201230151609.png)
+
+### 3.7、工具包
+- 加解密
+  > utils工具包提供了一些主流的加解密工具
+  - Bcrypt 加密算法（hash算法加密）
+  - AES-CBC 加密算法（对称加密）
+  - MD5 加密算法（不可逆加密）
 
 ## 四、规划
 

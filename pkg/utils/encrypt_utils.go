@@ -4,7 +4,9 @@ import (
 	"bytes"
 	"crypto/aes"
 	"crypto/cipher"
+	"crypto/md5"
 	"encoding/base64"
+	"fmt"
 	"golang.org/x/crypto/bcrypt"
 )
 
@@ -18,8 +20,8 @@ func BcryptEncrypt(plaintext string, cost int) (string, error) {
 }
 
 // AES加密-CBC方式
-func AesEncrypt(encodeStr string, key string, iv string) (string, error) {
-	encodeBytes := []byte(encodeStr)
+func AesEncrypt(plaintext string, key string, iv string) (string, error) {
+	encodeBytes := []byte(plaintext)
 	//根据key 生成密文
 	block, err := aes.NewCipher([]byte(key))
 	if err != nil {
@@ -41,4 +43,11 @@ func PKCS5Padding(ciphertext []byte, blockSize int) []byte {
 	//填充
 	padtext := bytes.Repeat([]byte{byte(padding)}, padding)
 	return append(ciphertext, padtext...)
+}
+
+// MD5加密
+func MD5Encrypt(plaintext string) string {
+	text := []byte(plaintext)
+	ciphertext := md5.Sum(text)
+	return fmt.Sprintf("%x", ciphertext)
 }

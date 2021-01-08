@@ -1,6 +1,9 @@
 package main
 
-import "golang.org/x/crypto/bcrypt"
+import (
+	"github.com/yejingxuan/go-libra/pkg/utils"
+	"golang.org/x/crypto/bcrypt"
+)
 
 func main() {
 	password := "yjx123456"
@@ -12,4 +15,7 @@ func main() {
 		return
 	}
 	println("success")
+
+	md5Text := utils.MD5Encrypt("123456")
+	println(md5Text)
 }
