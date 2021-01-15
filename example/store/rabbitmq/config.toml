@@ -1,0 +1,11 @@
+[general]
+app_name = "libra"
+pool_size = 50
+log_level = 1
+log_path = "./log/"
+
+
+
+[system.rabbitmq]
+address = "amqp://guest:guest@localhost:5672/"
+dial_timeout = 3

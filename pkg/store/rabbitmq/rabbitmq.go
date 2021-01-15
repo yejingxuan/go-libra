@@ -3,14 +3,16 @@ package rabbitmq
 import (
 	"fmt"
 	"github.com/spf13/viper"
-	"go.etcd.io/etcd/clientv3"
-	"strings"
-	"time"
+	"github.com/streadway/amqp"
+)
+
+const (
+	KIND_FANOUT = "fanout"
 )
 
 type ConfigRabbitMQ struct {
-	Endpoints   string
-	DialTimeout int64
+	Address string
+	Timeout int64
 }
 
 //标准配置
@@ -20,16 +22,82 @@ func StdConfig() ConfigRabbitMQ {
 
 func rawConfig(name string) ConfigRabbitMQ {
 	config := ConfigRabbitMQ{
-		Endpoints:   viper.GetString(fmt.Sprintf("%s.dndpoints", name)),
-		DialTimeout: viper.GetInt64(fmt.Sprintf("%s.dial_timeout", name)),
+		Address: viper.GetString(fmt.Sprintf("%s.address", name)),
+		Timeout: viper.GetInt64(fmt.Sprintf("%s.timeout", name)),
 	}
 	return config
 }
 
-func (stdConfig ConfigRabbitMQ) Build() (*clientv3.Client, error) {
-	cli, err := clientv3.New(clientv3.Config{
-		Endpoints:   strings.Split(stdConfig.Endpoints, ","),
-		DialTimeout: time.Duration(stdConfig.DialTimeout) * time.Second,
-	})
-	return cli, err
+//创建 mq 连接
+func (stdConfig ConfigRabbitMQ) Build() (*amqp.Connection, error) {
+	conn, err := amqp.Dial(stdConfig.Address)
+	return conn, err
+}
+
+//创建exchange交换机
+func CreateExchange(exchangeName string, kind string, conn *amqp.Connection) error {
+	ch, err := conn.Channel()
+	defer ch.Close()
+	if err != nil {
+		return err
+	}
+
+	err = ch.ExchangeDeclare(
+		exchangeName, // name
+		kind,         // type
+		true,         // durable
+		false,        // auto-deleted
+		false,        // internal
+		false,        // no-wait
+		nil,          // arguments
+	)
+	return err
+}
+
+//创建队列并与exchange绑定
+func CreateQueueWithEx(queueName string, exchangeName string, routingKey string, conn *amqp.Connection) error {
+	ch, err := conn.Channel()
+	defer ch.Close()
+	if err != nil {
+		return err
+	}
+	//声明了队列
+	q, err := ch.QueueDeclare(
+		queueName, //队列名字为rabbitMQ自动生成
+		true,
+		false,
+		false,
+		false,
+		nil,
+	)
+	//交换器跟队列进行绑定，交换器将接收到的消息放进队列中
+	err = ch.QueueBind(
+		q.Name,
+		routingKey,
+		exchangeName,
+		false,
+		nil,
+	)
+	return nil
+}
+
+//发送mq消息
+func SendMsg(msg string, exchangeName string, routingKey string, conn *amqp.Connection) error {
+	ch, err := conn.Channel()
+	defer ch.Close()
+
+	if err != nil {
+		return err
+	}
+
+	err = ch.Publish(
+		exchangeName, // exchange
+		routingKey,   // routing key
+		false,        // mandatory
+		false,        // immediate
+		amqp.Publishing{
+			ContentType: "text/plain",
+			Body:        []byte(msg),
+		})
+	return err
 }
