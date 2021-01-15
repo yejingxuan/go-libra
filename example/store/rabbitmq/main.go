@@ -9,8 +9,8 @@ import (
 func main() {
 	app := libra.DefaultApplication()
 	app.Start()
-	//app.Run(sendMsg)
-	app.Run(receiveMsg)
+	app.Run(sendMsg)
+	//app.Run(receiveMsg)
 }
 
 func receiveMsg() error {

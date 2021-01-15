@@ -2,6 +2,7 @@ package libra
 
 import (
 	"fmt"
+	"github.com/yejingxuan/go-libra/pkg/server"
 	"net"
 	"sync"
 
@@ -82,7 +83,7 @@ func (app *Application) Run(fns ...func() error) (err error) {
 		app.startWorkers()
 		app.wg.Done()
 	})
-	
+
 	//执行自定义服务
 	SerialUntilError(fns...)()
 	app.wg.Wait()
@@ -181,6 +182,12 @@ func (app *Application) startServers() error {
 				err = server.Serve(listen)
 				select {}
 				return err
+			})
+		case *server.XServer:
+			eg.Go(func() (err error) {
+				log.Info(fmt.Sprintf("自定义服务：%s 加载成功, 访问地址:%d", server.Name, viper.GetInt("server.http_port")))
+				server.Run()
+				return nil
 			})
 		default:
 			log.Info("no support")

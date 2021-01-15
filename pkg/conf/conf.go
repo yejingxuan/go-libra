@@ -45,4 +45,7 @@ func loadDefaultConfig() {
 	//etcd默认配置
 	viper.SetDefault("system.etcd.dndpoints", "127.0.0.1:2379")
 	viper.SetDefault("system.etcd.dial_timeout", 5)
+
+	//rabbitmq默认配置
+	viper.SetDefault("system.rabbitmq.address", "amqp://guest:guest@localhost:5672/")
 }
