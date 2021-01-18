@@ -101,3 +101,29 @@ func SendMsg(msg string, exchangeName string, routingKey string, conn *amqp.Conn
 		})
 	return err
 }
+
+func Receive(handler func(msg string), queueName string, conn *amqp.Connection) error {
+	ch, err := conn.Channel()
+	defer ch.Close()
+	if err != nil {
+		return err
+	}
+
+	msgs, err := ch.Consume(
+		queueName,
+		"",
+		true,
+		false,
+		false,
+		false,
+		nil,
+	)
+	forever := make(chan bool)
+	go func() {
+		for d := range msgs {
+			handler(string(d.Body))
+		}
+	}()
+	<-forever
+	return nil
+}

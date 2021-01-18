@@ -182,6 +182,7 @@ func weatherWorker() worker.Worker {
 ## 四、规划
 
 ### 4.1、TODO
+- [ ] 熔断限流保护 go-sentinel 
 - [ ] 工作流-workflow
 - [ ] 负载均衡
 - [ ] 路由网关限流

@@ -13,38 +13,7 @@ func main() {
 	//app.Run(receiveMsg)
 }
 
-func receiveMsg() error {
-	log.Info("创建MQ连接")
-	conn, err := rabbitmq.StdConfig().Build()
-	if err != nil {
-		log.Error("创建MQ连接失败", err)
-		return err
-	}
-	ch, err := conn.Channel()
-	defer ch.Close()
-	if err != nil {
-		return err
-	}
-
-	msgs, err := ch.Consume(
-		"log-queue-1",
-		"",
-		true,
-		false,
-		false,
-		false,
-		nil,
-	)
-	forever := make(chan bool)
-	go func() {
-		for d := range msgs {
-			log.Info("接收到消息：" + string(d.Body))
-		}
-	}()
-	<-forever
-	return nil
-}
-
+//发送消息
 func sendMsg() error {
 	log.Info("创建MQ连接")
 	conn, err := rabbitmq.StdConfig().Build()
@@ -68,10 +37,24 @@ func sendMsg() error {
 	}
 
 	log.Info("发送消息")
-	err = rabbitmq.SendMsg("log-success", "log-exchange", "", conn)
+	err = rabbitmq.SendMsg("log-success222", "log-exchange", "", conn)
 	if err != nil {
 		log.Error("发送消息失败", err)
 		return err
 	}
 	return err
+}
+
+//接收消息
+func receiveMsg() error {
+	log.Info("创建MQ连接")
+	conn, err := rabbitmq.StdConfig().Build()
+	if err != nil {
+		log.Error("创建MQ连接失败", err)
+		return err
+	}
+	rabbitmq.Receive(func(msg string) {
+		log.Info("接收到消息：" + msg)
+	}, "log-queue-1", conn)
+	return nil
 }
