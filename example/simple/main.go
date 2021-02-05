@@ -27,6 +27,12 @@ func httpServer() *gin.Engine {
 	v1 := engine.Group("/service/server/v1/base")
 	{
 		v1.GET("/healthCheck", func(c *gin.Context) {
+			token := c.GetHeader("token")
+			cookie, _ := c.Cookie("userType")
+			log.Info("token", token)
+			/*c.Redirect(http.StatusMovedPermanently, "https://www.baidu.com")*/
+			log.Info("cookie", cookie)
+
 			rep := gin.H{"message": "ok", "code": 200}
 			c.JSON(200, rep)
 		})
