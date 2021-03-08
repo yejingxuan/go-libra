@@ -1,0 +1,8 @@
+[general]
+app_name = "auto-build"
+pool_size = 50
+log_level = 1
+log_path = "./log/"
+
+[server]
+http_port = 7002
