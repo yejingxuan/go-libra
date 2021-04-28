@@ -29,6 +29,8 @@ require (
 	google.golang.org/grpc v1.31.0
 	google.golang.org/protobuf v1.25.0 // indirect
 	gopkg.in/sourcemap.v1 v1.0.5 // indirect
+	k8s.io/apimachinery v0.0.0-20190817020851-f2f3a405f61d
+	k8s.io/client-go v0.0.0-20190819141724-e14f31a72a77
 	sigs.k8s.io/yaml v1.2.0 // indirect
 )
 
